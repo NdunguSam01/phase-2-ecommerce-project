@@ -1,19 +1,21 @@
-const Cart = ({cart}) => 
-{
-    return (  
-        <h1>Cart Page</h1>
-        /*
-        This page receives the cart items from the parent component (App.js)
-        Your job is to destructure the received props and display the data in table form
+import React from 'react';
 
-        The table should contain the following fields;
-            1. Image
-            2. Description
-            3. Quantity
-            4. Unit price
-            4. Total
-         */
+const Cart = ({items}) =>{
+    return(
+<div>
+    {items.map((item,index) =>(
+  <div key ={index}>
+<img src='item.image'>
+  alt ={item.decription}  
+  <p>Description:{item.Decription}</p>
+  <p>Quantity:{item.Quantity}</p>
+  <p>Unit Price:{item.unitPrice}</p>
+  <p>Total:{item.total}</p>
+
+</img>
+  </div>    
+    ))}
+</div>
     );
 }
- 
 export default Cart;
