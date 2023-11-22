@@ -1,18 +1,14 @@
-import React from 'react';
-import{link} from 'react-router-dom';
+import { NavLink } from "react-router-dom";
 
-const Navbar = () =>{
- return(
- <Navbar>
-<ul>
-    <li>
- <link to ="/Home">Home</link> 
-<link to ="/Cart">Cart</link> 
-  <link to ="/saved-items">Saved Items</link>    
-    </li>
-    </ul>  
-
- </Navbar>   
- );   
+const Navbar = ({savedItemsCount, cartCount}) => 
+{
+    return (  
+        <nav>
+            <NavLink to="/">Home</NavLink>
+            <NavLink to="/cart">Cart <sup>{cartCount}</sup></NavLink>
+            <NavLink to="/saved">Saved items <sup>{savedItemsCount}</sup></NavLink>
+        </nav>
+    );
 }
+ 
 export default Navbar;

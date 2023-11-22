@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 const Home = ({ products }) => {
   const productItems = products.map((product) => (
     <div key={product.id}>
-      <NavLink to={`/items/${product.id}`}>
+      <NavLink to={`/item/${product.id}`}>
         <img src={product.image} alt={product.name} />
         <p>{product.name}</p>
       </NavLink>
