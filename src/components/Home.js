@@ -1,47 +1,22 @@
-const Home = ({products}) => {
-    return ( 
-        <h1>Home Page</h1>
-        /*
-        This page receives a prop of products and displays the products as clickable items.
-        Clicking on them should redirect a user to the Items page. 
-        
-        Refer to the code below in order to complete this
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 
-        NB: 
-            1. Only the product image and name should be displayed in this page
-            2. Make sure you destructure the received props
-         */
+const Home = ({ products }) => {
+  const productItems = products.map((product) => (
+    <div key={product.id}>
+      <NavLink to={`/items/${product.id}`}>
+        <img src={product.image} alt={product.name} />
+        <p>{product.name}</p>
+      </NavLink>
+    </div>
+  ));
 
-        /*Code reference
+  return (
+    <>
+      <h1>Home Page</h1>
+      {productItems}
+    </>
+  );
+};
 
-        import { NavLink } from "react-router-dom"
-
-        const Countries = ({countries}) => 
-        {
-            const country=countries.map(country =>
-                {
-                    let {id, name}= country
-                    return(
-                        <li key={id}>
-                            <NavLink to={`/countries/${id}`}>{name}</NavLink>
-                        </li>
-                    )
-                    
-                })
-            return ( 
-                <>
-                    <h1>Countries Page</h1>
-                    <ul>
-                        {country}
-                    </ul>
-                </>
-            );
-        }
-        
-        export default Countries;
-
-         */
-     );
-}
- 
 export default Home;

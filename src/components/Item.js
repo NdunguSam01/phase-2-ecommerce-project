@@ -1,36 +1,26 @@
-const Item = ({products}) => 
-{
-    return ( 
-        <h1>Items Page</h1>
+import React from 'react';
+import { useParams } from 'react-router-dom';
 
-        /*
-        This component receives the products array as props. Your goal is to display only the item which has been clicked. Refer to the code below to help you complete the task.
-        */
+const Item = ({ products }) => {
+  const { id } = useParams();
+  const selectedItem = products.find((product) => product.id === parseInt(id));
 
-        /* 
-        
-        import { useParams } from "react-router-dom";
-        
-        const Country = ({countries}) => 
-        {
-            const {id} = useParams() //Returns all the parameters that have been bassed to the URL
+  return (
+    <>
+      <h1>Item Page</h1>
+      {selectedItem ? (
+        <>
+          <img src={selectedItem.image} alt={selectedItem.name} />
+          <p>Name: {selectedItem.name}</p>
+          <p>Price: {selectedItem.price}</p>
+          <p>Ratings: {selectedItem.ratings}</p>
+          {/* Add other details you want to display */}
+        </>
+      ) : (
+        <p>Item not found</p>
+      )}
+    </>
+  );
+};
 
-            const country=countries.find(country=> country.id === parseInt(id))
-            let {name, capital} = country
-
-            return ( 
-                <>
-                    <h1>Country Page</h1>
-                    <p>Country name: {country ? name : null}</p>
-                    <p>Captial city: {country ? capital : null}</p>
-                </>
-            );
-        }
-        `
-        export default Country;
-        
-        */
-     );
-}
- 
 export default Item;
