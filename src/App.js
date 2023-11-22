@@ -91,12 +91,12 @@ function App()
 
   return (
     <>
-      <Navbar/>
+      <Navbar savedItemsCount={savedItemsCount} cartCount={cartCount}/>
       <Routes>
         <Route path='/' element={<Home products={products}/>}></Route>
         <Route path='/cart' element={<Cart cart={cart}/>}></Route>
-        <Route path='/saved' element={<Saved savedItems={savedItems}/>}></Route>
-        <Route path='/:id' element={<Item products={products}/>}></Route>
+        <Route path='/saved' element={<Saved savedItems={savedItems} deleteSavedItem={deleteSavedItem}/>}></Route>
+        <Route path='/:id' element={<Item products={products} itemNo={itemNo} handleValueChange={handleValueChange} addItemToSaved={addItemToSaved}/>}></Route>
       </Routes>
     </>
   );
