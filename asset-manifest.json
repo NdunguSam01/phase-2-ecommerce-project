@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/ShopSavvyHub-ecommerce-site/static/css/main.cb3c251c.css",
+    "main.js": "/ShopSavvyHub-ecommerce-site/static/js/main.811a63dc.js",
+    "static/js/787.7b0a7572.chunk.js": "/ShopSavvyHub-ecommerce-site/static/js/787.7b0a7572.chunk.js",
+    "index.html": "/ShopSavvyHub-ecommerce-site/index.html",
+    "main.cb3c251c.css.map": "/ShopSavvyHub-ecommerce-site/static/css/main.cb3c251c.css.map",
+    "main.811a63dc.js.map": "/ShopSavvyHub-ecommerce-site/static/js/main.811a63dc.js.map",
+    "787.7b0a7572.chunk.js.map": "/ShopSavvyHub-ecommerce-site/static/js/787.7b0a7572.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.cb3c251c.css",
+    "static/js/main.811a63dc.js"
+  ]
+}
