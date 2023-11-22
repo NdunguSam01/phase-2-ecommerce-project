@@ -83,8 +83,12 @@ function App()
     setSavedItems(remainingSavedItems)
   }
 
-  
-  
+  //Function to handle change in the input field for the no of items
+  const handleValueChange= e =>
+  {
+    setItemNo(e.target.value)
+  }
+
   return (
     <>
       <Navbar/>
