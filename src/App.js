@@ -40,6 +40,50 @@ function App()
       .then(response => response.json())
       .then(savedItems => setCart(savedItems))
   },[])
+
+  //Function to add item to saved items
+  const addItemToSaved = id =>
+  {
+    const savedProduct=products.find(product => product.id === parseInt(id))
+
+    //Making a POST request to the server
+    fetch("https://phase-2-ecommerce-project-api.onrender.com/savedItems",
+    {
+      method: "POST",
+      headers: 
+      {
+        "Content-Type" : "application/json"
+      },
+      body: JSON.stringify(savedProduct)
+    })
+    .then(setSavedItemsCount(savedItemsCount => savedItemsCount + 1))
+    .then(alert("Item has been added to your saved items"))
+
+    //Updating the saved items state
+    setSavedItems([...savedItems, savedProduct])
+  }
+
+  //Function to remove item from saved items
+  const deleteSavedItem = id =>
+  {
+    //Making the delete request
+    fetch(`https://phase-2-ecommerce-project-api.onrender.com/savedItems/${id}`,
+    {
+      method: "DELETE",
+      headers:
+      {
+        "Content-Type" : "application/json"
+      }
+    })
+    .then(setSavedItemsCount(savedItemsCount => savedItemsCount -1))
+    .then(alert("Item removed from saved items"))
+
+    //Updating the state
+    const remainingSavedItems=savedItems.filter(savedItem => savedItem.id !== parseInt(id))
+    setSavedItems(remainingSavedItems)
+  }
+
+  
   
   return (
     <>
