@@ -127,7 +127,7 @@ function App()
 
   return (
     <>
-      <Navbar savedItemsCount={savedItemsCount} cartCount={cartCount}/>
+      <Navbar/>
       <Routes>
         <Route path='/' element={<Home products={products}/>}></Route>
         <Route path='/cart' element={<Cart cart={cart}/>}></Route>
