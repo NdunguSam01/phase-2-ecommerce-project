@@ -13,6 +13,9 @@ const Cart = ({cart}) =>
             <td>{quantity}</td>
             <td>{unitPrice}</td>
             <td>{totalPrice}</td>
+            <td>
+              <button className="btn btn-outline-danger col-12">Remove item from cart</button>
+            </td>
         </tr>
       )
     })

@@ -16,8 +16,6 @@ function App()
   const [products, setProducts]=useState([])
   const [cart, setCart]=useState([])
   const [savedItems, setSavedItems]=useState([])
-  const [cartCount, setCartCount]=useState(0)
-  const [savedItemsCount, setSavedItemsCount]=useState(0)
 
   //Fetching products from the API
   useEffect(()=>
@@ -35,7 +33,6 @@ function App()
       .then(savedItems => 
         {
           setSavedItems(savedItems)
-          setSavedItemsCount(savedItems.length)
         })
   },[])
 
@@ -64,7 +61,6 @@ function App()
       },
       body: JSON.stringify(savedProduct)
     })
-    .then(setSavedItemsCount(savedItemsCount => savedItemsCount + 1))
     .then(alert("Item has been added to your saved items"))
 
     //Updating the saved items state
@@ -83,7 +79,6 @@ function App()
         "Content-Type" : "application/json"
       }
     })
-    .then(setSavedItemsCount(savedItemsCount => savedItemsCount -1))
     .then(alert("Item removed from saved items"))
 
     //Updating the state
@@ -126,7 +121,6 @@ function App()
       {
         alert("Item has been added to cart")
         setCart([...cart, item])
-        setCartCount(cartCount => cartCount + 1)
       })
   }
 
