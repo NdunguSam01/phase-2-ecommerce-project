@@ -3,7 +3,7 @@ import './css/CardBody.css'
 import './css/Item.css'
 import './css/Navbar.css'
 import { useEffect, useState } from 'react';
-import { Routes, Route, json } from 'react-router-dom';
+import { Routes, Route} from 'react-router-dom';
 import Navbar from './components/Navbar'
 import Home from './components/Home';
 import Cart from './components/Cart'
@@ -32,7 +32,11 @@ function App()
   {
     fetch("https://phase-2-ecommerce-project-api.onrender.com/savedItems")
       .then(response => response.json())
-      .then(savedItems => setSavedItems(savedItems))
+      .then(savedItems => 
+        {
+          setSavedItems(savedItems)
+          setSavedItemsCount(savedItems.length)
+        })
   },[])
 
   //Fetching cartItems from the API
@@ -42,6 +46,8 @@ function App()
       .then(response => response.json())
       .then(savedItems => setCart(savedItems))
   },[])
+  
+  
 
   //Function to add item to saved items
   const addItemToSaved = id =>
