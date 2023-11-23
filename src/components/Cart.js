@@ -1,11 +1,11 @@
-const Cart = ({cart}) => 
+const Cart = ({cart, deleteCartItem}) => 
 {
   const cartMap=cart.map(cartItem =>
     {
-      let {image, title, quantity, unitPrice, totalPrice} = cartItem
+      let {id, image, title, quantity, unitPrice, totalPrice} = cartItem
 
       return(
-        <tr>
+        <tr key={id}>
           <td>
             <img src={image} alt={title} />
           </td>
@@ -14,7 +14,7 @@ const Cart = ({cart}) =>
             <td>{unitPrice}</td>
             <td>{totalPrice}</td>
             <td>
-              <button className="btn btn-outline-danger col-12">Remove item from cart</button>
+              <button className="btn btn-outline-danger col-12" onClick={()=>deleteCartItem(id)}>Remove item from cart</button>
             </td>
         </tr>
       )

@@ -124,13 +124,33 @@ function App()
       })
   }
 
+  //Function to delete item from cart
+  const deleteCartItem= id =>
+  {
+    console.log(id)
+
+    //Making the delete request
+    fetch(`https://phase-2-ecommerce-project-api.onrender.com/cart/${id}`,
+    {
+      method: "DELETE",
+      headers:
+      {
+        "Content-Type" : "application/json"
+      }
+    })
+    .then(alert("Item removed from cart"))
+
+    //Updating the state
+    const remainingSavedItems=cart.filter(cartItem => cartItem.id !== parseInt(id))
+    setCart(remainingSavedItems)
+  }
 
   return (
     <>
       <Navbar/>
       <Routes>
         <Route path='/' element={<Home products={products}/>}></Route>
-        <Route path='/cart' element={<Cart cart={cart}/>}></Route>
+        <Route path='/cart' element={<Cart cart={cart} deleteCartItem={deleteCartItem}/>}></Route>
         <Route path='/saved' element={<Saved savedItems={savedItems} deleteSavedItem={deleteSavedItem}/>}></Route>
         <Route path='/:id' element={<Item products={products} addItemToCart={addItemToCart} addItemToSaved={addItemToSaved}/>}></Route>
       </Routes>
