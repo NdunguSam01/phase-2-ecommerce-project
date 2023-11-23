@@ -3,7 +3,7 @@ import './css/CardBody.css'
 import './css/Item.css'
 import './css/Navbar.css'
 import { useEffect, useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, json } from 'react-router-dom';
 import Navbar from './components/Navbar'
 import Home from './components/Home';
 import Cart from './components/Cart'
@@ -16,7 +16,6 @@ function App()
   const [products, setProducts]=useState([])
   const [cart, setCart]=useState([])
   const [savedItems, setSavedItems]=useState([])
-  const [itemNo, setItemNo]=useState(1)
   const [cartCount, setCartCount]=useState(0)
   const [savedItemsCount, setSavedItemsCount]=useState(0)
 
@@ -86,11 +85,45 @@ function App()
     setSavedItems(remainingSavedItems)
   }
 
-  //Function to handle change in the input field for the no of items
-  const handleValueChange= e =>
+  //Function to add item to cart
+  const addItemToCart = id =>
   {
-    setItemNo(e.target.value)
+    //Checking if the item exists in the products state
+    const addedItem=products.find(product => product.id === parseInt(id))
+    let {image, title, price}=addedItem
+    
+    let quantity=1
+    let totalPrice=quantity*price
+
+    //Creating the object that will be added to the cart endpoint
+    let cartData=
+    {
+      image: image,
+      title: title,
+      quantity: quantity,
+      unitPrice: price,
+      totalPrice: totalPrice,
+    }
+    
+    //Making the POST request
+    fetch("https://phase-2-ecommerce-project-api.onrender.com/cart",
+    {
+      method: "POST",
+      headers:
+      {
+        "Content-Type" : "application/json"
+      },
+      body: JSON.stringify(cartData)
+    })
+    .then(response => response.json())
+    .then(item => 
+      {
+        alert("Item has been added to cart")
+        setCart([...cart, item])
+        setCartCount(cartCount => cartCount + 1)
+      })
   }
+
 
   return (
     <>
@@ -99,7 +132,7 @@ function App()
         <Route path='/' element={<Home products={products}/>}></Route>
         <Route path='/cart' element={<Cart cart={cart}/>}></Route>
         <Route path='/saved' element={<Saved savedItems={savedItems} deleteSavedItem={deleteSavedItem}/>}></Route>
-        <Route path='/:id' element={<Item products={products} itemNo={itemNo} handleValueChange={handleValueChange} addItemToSaved={addItemToSaved}/>}></Route>
+        <Route path='/:id' element={<Item products={products} addItemToCart={addItemToCart} addItemToSaved={addItemToSaved}/>}></Route>
       </Routes>
     </>
   );
