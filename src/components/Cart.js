@@ -1,21 +1,37 @@
-import React from 'react';
+const Cart = ({cart}) => 
+{
+  const cartMap=cart.map(cartItem =>
+    {
+      let {image, title, quantity, unitPrice, totalPrice} = cartItem
 
-const Cart = ({items}) =>{
-    return(
-<div>
-    {items.map((item,index) =>(
-  <div key ={index}>
-<img src='item.image'>
-  alt ={item.decription}  
-  <p>Description:{item.Decription}</p>
-  <p>Quantity:{item.Quantity}</p>
-  <p>Unit Price:{item.unitPrice}</p>
-  <p>Total:{item.total}</p>
+      return(
+        <tr>
+          <td>
+            <img src={image} alt={title} />
+          </td>
+            <td>{title}</td>
+            <td>{quantity}</td>
+            <td>{unitPrice}</td>
+            <td>{totalPrice}</td>
+        </tr>
+      )
+    })
 
-</img>
-  </div>    
-    ))}
-</div>
-    );
+  return (  
+    <>
+      <h1>Cart Page</h1>
+      <table>
+        <tr>
+          <th>Image</th>
+          <th>Description</th>
+          <th>Quantity</th>
+          <th>Unit price</th>
+          <th>Total price</th>
+        </tr>
+        {cartMap}
+      </table>
+    </>
+  );
 }
+ 
 export default Cart;
